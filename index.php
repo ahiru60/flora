@@ -44,7 +44,9 @@
 ?>
     <!-- Header Area Start Here -->
     <?php
-        include("header.php")
+        $username = $_GET['username'];
+        echo $username;
+        include("header.php");
         ?>
     <!-- Header Area End Here -->
     <!-- Slider/Intro Section Start -->

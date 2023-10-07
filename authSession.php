@@ -1,7 +1,8 @@
 <?php
- //echo $_SESSION["username"];
- if(!isset($_SESSION["loginUname"])) {
+//session_start();
+ //echo $_GET["username"];
+ if(!isset($username)) {
  header("Location: login.php");
- //exit();
+ exit();
  }
 ?>

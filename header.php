@@ -51,7 +51,7 @@
                                     <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
                                         <div class="single-cart-item">
                                             <div class="cart-img">
-                                                <a href="cart.php"><img src="assets/images/cart/1.jpg" alt=""></a>
+                                                <a href="cart.php<?php if(isset($username)){echo "?username='".$username."'";} ?>"><img src="assets/images/cart/1.jpg" alt=""></a>
                                             </div>
                                             <div class="cart-text">
                                                 <h5 class="title"><a href="cart.php">Odio tortor consequat</a></h5>

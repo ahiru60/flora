@@ -108,15 +108,15 @@
                             <div class='product-item'>
                                 <div class='single-product position-relative mr-0 ml-0'>
                                     <div class='product-image'>
-                                        <a class='d-block' href='product-details.php'>
+                                        <a class='d-block' href='product-details.php?product_id=" . $row['id'] . "'>
                                             <img src='".$row['img']."' alt='' class='product-image-1 w-100'>
-                                            </a>
-                                        <span class='onsale'>Sale!</span>
-                                        <div class='add-action d-flex flex-column position-absolute'>
+                                            </a>";
+                                        if($row['is_sale']){echo "<span class='onsale'>Sale!</span>";}
+                                        echo "<div class='add-action d-flex flex-column position-absolute'>
                                             <a href='compare.php' title='Compare'>
                                                 <i class='lnr lnr-sync' data-toggle='tooltip' data-placement='left' title='Compare'></i>
                                             </a>
-                                            <a href='wishlist.php' title='Add To Wishlist'>
+                                            <a href='#' title='Add To Wishlist'>
                                                 <i class='lnr lnr-heart' data-toggle='tooltip' data-placement='left' title='Wishlist'></i>
                                             </a>
                                             <a href='#exampleModalCenter' title='Quick View' data-bs-toggle='modal' data-bs-target='#exampleModalCenter'>
@@ -126,7 +126,7 @@
                                     </div>
                                     <div class='product-content'>
                                         <div class='product-title'>
-                                            <h4 class='title-2'> <a href='product-details.php'>".$row['product_name']."</a></h4>
+                                            <h4 class='title-2'> <a href='product-details.php?product_id=" . $row['id'] . "'>".$row['product_name']."</a></h4>
                                         </div>
                                         <div class='product-rating'>
                                             <i class='fa fa-star'></i>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class='product-content-listview'>
                                         <div class='product-title'>
-                                            <h4 class='title-2'> <a href='product-details.php'>Jasmine flowers white</a></h4>
+                                            <h4 class='title-2'> <a href='product-details.php?product_id=" . $row['id'] . "'>Jasmine flowers white</a></h4>
                                         </div>
                                         <div class='product-rating'>
                                             <i class='fa fa-star'></i>
@@ -162,7 +162,7 @@
                                             <a class='list-icon' href='compare.php' title='Compare'>
                                                 <i class='lnr lnr-sync' data-toggle='tooltip' data-placement='top' title='Compare'></i>
                                             </a>
-                                            <a class='list-icon' href='wishlist.php' title='Add To Wishlist'>
+                                            <a class='list-icon' href='#' title='Add To Wishlist'>
                                                 <i class='lnr lnr-heart' data-toggle='tooltip' data-placement='top' title='Wishlist'></i>
                                             </a>
                                         </div>

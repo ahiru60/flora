@@ -1,4 +1,8 @@
-
+<?php
+$username = $_GET['username'];
+echo $username;
+//include('authSession.php');
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -44,7 +48,7 @@
 
     <!-- Header Area Start Here -->
     <?php
-        include("header.php")
+        include("header.php");
         ?>
     <!-- Header Area End Here -->
     <!-- Breadcrumb Area Start Here -->

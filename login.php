@@ -2,6 +2,7 @@
 <html class="no-js" lang="en">
 
 <?php
+
 require('dbCon.php');
 
             // When form submitted, check and create user session.
@@ -15,10 +16,10 @@ require('dbCon.php');
                 $result = mysqli_query($con, $query) or die(mysqli_error($con));
                 $rows = mysqli_num_rows($result);
                 if ($rows >0) {
-                    session_start();
-                $GLOBALS["loginUname"] = $username;
+                //session_start();    
+                //$_SESSION["username"] = $username;
                 // Redirect to user dashboard page
-                header("Location: index.php");
+                header("Location: index.php?username='".$username."'");
                 }
             else {
                 echo "rows = ".$rows;

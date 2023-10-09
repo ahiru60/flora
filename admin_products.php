@@ -53,10 +53,10 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="breadcrumb-content position-relative section-content">
-                        <h3 class="title-3">Shop Sidebar</h3>
+                        <h3 class="title-3">Products</h3>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
-                            <li>Shop</li>
+                            <li><a href="index.php">Admin</a></li>
+                            <li>Products</li>
                         </ul>
                     </div>
                 </div>
@@ -92,6 +92,12 @@
                         </div>
                     </div>
                     <!--shop toolbar end-->
+                    <form method="post" action="add-product.php" accept-charset="UTF-8" class="contact-form" enctype="multipart/form-data">
+                        <div class="col-12 col-custom mt-40">
+                            <button type="submit" id="submit" name="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Add Product</button>
+                        </div>
+                    </form>
+                    <br><br>
                     <!-- Shop Wrapper Start -->
                     <div class="row shop_wrapper grid_3">
     
@@ -108,12 +114,13 @@
                             <div class='product-item'>
                                 <div class='single-product position-relative mr-0 ml-0'>
                                     <div class='product-image'>
-                                        <a class='d-block' href='product-details.php?product_id=" . $row['id'] . "'>
+                                        <a class='d-block' href='admin_product-details.php?product_id=" . $row['id'] . "'>
                                             <img src='".$row['img']."' alt='' class='product-image-1 w-100'>
                                             </a>";
                                         if($row['is_sale']){echo "<span class='onsale'>Sale!</span>";}
                                         echo "<div class='add-action d-flex flex-column position-absolute'>
                                             <a href='compare.php' title='Compare'>
+                                            
                                                 <i class='lnr lnr-sync' data-toggle='tooltip' data-placement='left' title='Compare'></i>
                                             </a>
                                             <a href='#' title='Add To Wishlist'>
@@ -126,7 +133,7 @@
                                     </div>
                                     <div class='product-content'>
                                         <div class='product-title'>
-                                            <h4 class='title-2'> <a href='product-details.php?product_id=" . $row['id'] . "'>".$row['product_name']."</a></h4>
+                                            <h4 class='title-2'> <a href='admin_product-details.php?product_id=" . $row['id'] . "'>".$row['product_name']."</a></h4>
                                         </div>
                                         <div class='product-rating'>
                                             <i class='fa fa-star'></i>
@@ -143,7 +150,7 @@
                                     </div>
                                     <div class='product-content-listview'>
                                         <div class='product-title'>
-                                            <h4 class='title-2'> <a href='product-details.php?product_id=" . $row['id'] . "'>Jasmine flowers white</a></h4>
+                                            <h4 class='title-2'> <a href='admin_product-details.php?product_id=" . $row['id'] . "'>Jasmine flowers white</a></h4>
                                         </div>
                                         <div class='product-rating'>
                                             <i class='fa fa-star'></i>
@@ -326,12 +333,12 @@
                                 <h3 class="widget-title">Recent Products</h3>
                                 <div class="sidebar-body">
                                     <div class="sidebar-product align-items-center">
-                                        <a href="product-details.php" class="image">
+                                        <a href="admin_product-details.php" class="image">
                                             <img src="assets/images/cart/1.jpg" alt="product">
                                         </a>
                                         <div class="product-content">
                                             <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.php">Glory of the Snow</a></h4>
+                                                <h4 class="title-2"> <a href="admin_product-details.php">Glory of the Snow</a></h4>
                                             </div>
                                             <div class="price-box">
                                                 <span class="regular-price ">$80.00</span>
@@ -347,12 +354,12 @@
                                         </div>
                                     </div>
                                     <div class="sidebar-product align-items-center">
-                                        <a href="product-details.php" class="image">
+                                        <a href="admin_product-details.php" class="image">
                                             <img src="assets/images/cart/2.jpg" alt="product">
                                         </a>
                                         <div class="product-content">
                                             <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.php">Pearly Everlasting</a></h4>
+                                                <h4 class="title-2"> <a href="admin_product-details.php">Pearly Everlasting</a></h4>
                                             </div>
                                             <div class="price-box">
                                                 <span class="regular-price ">$50.00</span>
@@ -368,12 +375,12 @@
                                         </div>
                                     </div>
                                     <div class="sidebar-product align-items-center">
-                                        <a href="product-details.php" class="image">
+                                        <a href="admin_product-details.php" class="image">
                                             <img src="assets/images/cart/3.jpg" alt="product">
                                         </a>
                                         <div class="product-content">
                                             <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.php">Jack in the Pulpit</a></h4>
+                                                <h4 class="title-2"> <a href="admin_product-details.php">Jack in the Pulpit</a></h4>
                                             </div>
                                             <div class="price-box">
                                                 <span class="regular-price ">$40.00</span>

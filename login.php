@@ -1,14 +1,18 @@
-<!doctype html>
-<html class="no-js" lang="en">
+
 
 <?php
-
+session_start();
 require('dbCon.php');
 
             // When form submitted, check and create user session.
             
             if (isset($_POST['username'])) {
-                $username = stripslashes($_REQUEST['username']); //removes backslashes
+                if($_REQUEST['password']=="admin"&&$_REQUEST['username']=="admin@flora.com"){
+                    $_SESSION["username"] = $username;
+                    $_SESSION['loggedin_admin'] = true;
+                    header("Location: admin_products.php");
+                }else{
+                    $username = stripslashes($_REQUEST['username']); //removes backslashes
                 $username = mysqli_real_escape_string($con, $username);
                 $password = stripslashes($_REQUEST['password']);
                 $password = mysqli_real_escape_string($con, $password);// Check user is exist in the database
@@ -17,10 +21,12 @@ require('dbCon.php');
                 $rows = mysqli_num_rows($result);
                 if ($rows >0) {
                 //session_start();    
-                //$_SESSION["username"] = $username;
+                $_SESSION["username"] = $username;
                 // Redirect to user dashboard page
-                header("Location: index.php?username='".$username."'");
+                $_SESSION['loggedin'] = true;
+                header("Location: index.php");
                 }
+                
             else {
                 echo "rows = ".$rows;
                 echo "<div class='form'>
@@ -28,10 +34,12 @@ require('dbCon.php');
                 <p class='link txt1'>Click here to <a
                 href='login.php' class='txt2' >Login</a> again.</p>
                 </div>";
-            }
+            }}
  } 
  else {
  ?>
+ <!doctype html>
+<html class="no-js" lang="en">
 <!-- Mirrored from htmldemo.net/flosun/flosun/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 04 Dec 2022 05:03:27 GMT -->
 <head>
     <meta charset="utf-8">

@@ -1,16 +1,13 @@
 <?php
- // Destroy session
- unset($_SESSION['username']);
- session_destroy();
+session_start();
 
- if(!isset($_SESSION['username'])) {
- // Redirecting To Home Page
- //$_SESSION['email']="ho";
- header("Location: login.php");
- }
- else{
+// Unset all session variables
+$_SESSION = array();
 
-    echo "error loging out";
-    
- }
+// Destroy the session
+session_destroy();
+
+// Redirect to login page
+header("Location: login.php");
+exit;
 ?>

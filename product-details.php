@@ -1,8 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-echo session_save_path();
-
+session_start();
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -44,7 +41,22 @@ echo session_save_path();
 </head>
 
 <body>
+<script>
+    function addToCart(userId, productId, image){
+    $.ajax({
+        type: 'POST',
+        url: 'add_to_cart.php',
+        data: {user_id: userId, product_id: productId, quantity: '0', image: image},
+        success: function(response) {
+            // Handle success - maybe update UI to show item in cart
+        },
+        error: function() {
+            // Handle error
+        }
+    });
+}
 
+</script>
  
 
     <!-- Header Area Start Here -->
@@ -131,17 +143,25 @@ if($result->num_rows > 0) {
                             <span>ID: SKU".str_pad($row['id'], 5, '0', STR_PAD_LEFT)."</span>
                         </div>
                         <p class='desc-content mb-5'>".$row['description']."</p>
-                        <div class='quantity-with_btn mb-5'>
+                        
+                            <div class='add-to_cart'>
+                            <!--<a class='btn product-cart button-icon flosun-button dark-btn' href='cart.php'>Add to cart</a>-->
+                        
+                            <form id='form' method='POST' action='add_to_cart.php'>
+                            <div class='quantity-with_btn mb-5'>
                             <div class='quantity'>
                                 <div class='cart-plus-minus'>
-                                    <input class='cart-plus-minus-box' value='0' type='text'>
+                                    <input class='cart-plus-minus-box' value='1' type='text' name='quantity' id='quantity'>
                                     <div class='dec qtybutton'>-</div>
                                     <div class='inc qtybutton'>+</div>
                                 </div>
                             </div>
-                            <div class='add-to_cart'>
-                                <a class='btn product-cart button-icon flosun-button dark-btn' href='cart.php'>Add to cart</a>
-                                <a class='btn flosun-button secondary-btn secondary-border rounded-0' href='wishlist.php'>Add to wishlist</a>
+                            <input type='hidden' name='user_id' value='".$_SESSION['username']."'>
+                            <input type='hidden' name='product_id' value='".$row['id']."'>
+                            <input type='hidden' name='image' value='".$row['img']."'>
+                            <input class='btn product-cart button-icon flosun-button dark-btn' type='submit' value='Add to Cart' id='addToCart'>
+                        </form>
+                            <a class='btn flosun-button secondary-btn secondary-border rounded-0' href='wishlist.php'>Add to wishlist</a>
                             </div>
                         </div>
                         <div class='social-share mb-4'>
@@ -325,6 +345,7 @@ if($result->num_rows > 0) {
     }}
 
     ?>
+    
     <!-- Single Product Main Area End -->
     <!--Product Area Start-->
     <div class="product-area mt-text-3">
@@ -380,6 +401,7 @@ if($result->num_rows > 0) {
                                             <span class="old-price"><del>$90.00</del></span>
                                         </div>
                                         <a href="cart.php" class="btn product-cart">Add to Cart</a>
+                                       
                                     </div>
                                 </div>
                                 <!--Single Product End-->
@@ -670,7 +692,7 @@ if($result->num_rows > 0) {
             </div>
         </div>
     </div>
-
+    
     <!-- Scroll to Top Start -->
     <a class="scroll-to-top" href="#">
         <i class="lnr lnr-arrow-up"></i>

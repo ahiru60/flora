@@ -137,7 +137,7 @@
                                         </div>
                                         <div class='price-box'>
                                             <span class='regular-price '>"."$".strval(number_format(intval(str_replace('$','',$row['price']))-((intval(str_replace('$','',$row['price']))/100)*20),2))."</span>
-                                            <span class='old-price'><del>".$row['price']."</del></span>
+                                            <span class='old-price'><del>"."$".$row['price']."</del></span>
                                         </div>
                                         <a href='cart.php' class='btn product-cart'>Add to Cart</a>
                                     </div>

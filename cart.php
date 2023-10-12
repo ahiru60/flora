@@ -1,5 +1,13 @@
 <?php
 include('authSession.php');
+include('dbCon.php');
+
+$user_id = $_SESSION['username'];
+
+// Fetch cart items for the user from the database
+$query = "SELECT * FROM `cart` WHERE user_id = '".$user_id."'";
+$result = mysqli_query($con, $query);
+//$cart_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -85,78 +93,33 @@ include('authSession.php');
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/small-size/1.jpg" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Pearly Everlasting <br> s / green</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="0" type="text">
-                                                <div class="dec qtybutton">-</div>
-                                                <div class="inc qtybutton">+</div>
-                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                            </div>
+                                <?php
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    $subTotal = 0;
+                                    while($row = $result->fetch_assoc()){
+                                        $query2 = "SELECT * FROM `products` WHERE id = '".$row['product_id']."'";
+                                        $result2 = mysqli_query($con, $query2);
+
+                                        while($row2 = $result2->fetch_assoc()){
+                                            $price = $row2['price'];
+                                        }
+                                        $subTotal = $subTotal+($price*$row['quantity']);
+                                        echo"
+                                        <tr>
+                                    <td class='pro-thumbnail'><a href='#'><img class='img-fluid' src='".$row['img']."' alt='Product' /></a></td>
+                                    <td class='pro-title'><a href='#'>Pearly Everlasting <br> s / green</a></td>
+                                    <td class='pro-price'><span>"."$".strval(number_format(intval(str_replace('$','',$price))-((intval(str_replace('$','',$price))/100)*20),2))."</span></td>
+                                    <td class='pro-quantity'>
+                                        <div class='quantity'>
+                                            ".$row['quantity']."
                                         </div>
                                     </td>
-                                    <td class="pro-subtotal"><span>$295.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="lnr lnr-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/small-size/2.jpg" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Jack in the Pulpit <br> red</a></td>
-                                    <td class="pro-price"><span>$275.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="0" type="text">
-                                                <div class="dec qtybutton">-</div>
-                                                <div class="inc qtybutton">+</div>
-                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$550.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="lnr lnr-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/small-size/3.jpg" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Glory of the Snow <br> s</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="0" type="text">
-                                                <div class="dec qtybutton">-</div>
-                                                <div class="inc qtybutton">+</div>
-                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$295.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="lnr lnr-trash"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/images/product/small-size/4.jpg" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Rose bouquet white</a></td>
-                                    <td class="pro-price"><span>$110.00</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="2" type="text">
-                                                <div class="dec qtybutton">-</div>
-                                                <div class="inc qtybutton">+</div>
-                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
-                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>$110.00</span></td>
-                                    <td class="pro-remove"><a href="#"><i class="lnr lnr-trash"></i></a></td>
-                                </tr>
+                                    <td class='pro-subtotal'><span>$".number_format($price*$row['quantity'],2)."</span></td>
+                                    <td class='pro-remove'><a href='remove_from_cart.php?id=".$row['id']."'><i class='lnr lnr-trash'></i></a></td>
+                                </tr>";
+                                    }}
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -177,28 +140,36 @@ include('authSession.php');
             <div class="row">
                 <div class="col-lg-5 ml-auto col-custom">
                     <!-- Cart Calculation Area -->
-                    <div class="cart-calculator-wrapper">
-                        <div class="cart-calculate-items">
-                            <h3>Cart Totals</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tr>
-                                        <td>Sub Total</td>
-                                        <td>$230</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping</td>
-                                        <td>$70</td>
-                                    </tr>
-                                    <tr class="total">
-                                        <td>Total</td>
-                                        <td class="total-amount">$300</td>
-                                    </tr>
-                                </table>
+                    <?php
+                    
+                        if(isset($subTotal)){
+                            echo "<div class='cart-calculator-wrapper'>
+                            <div class='cart-calculate-items'>
+                                <h3>Cart Totals</h3>
+                                <div class='table-responsive'>
+                                    <table class='table'>
+                                        <tr>
+                                            <td>Sub Total</td>
+                                            <td>$".number_format($subTotal,2)."</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping</td>
+                                            <td>$".number_format(($subTotal*0.1),2)."</td>
+                                        </tr>
+                                        <tr class='total'>
+                                            <td>Total</td>
+                                            <td class='total-amount'>$".number_format($subTotal+($subTotal*0.1),2)."</td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <a href="checkout.php" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Proceed To Checkout</a>
-                    </div>
+                            <a href='checkout.php' class='btn flosun-button primary-btn rounded-0 black-btn w-100'>Proceed To Checkout</a>
+                        </div>";
+
+                            
+                        }
+
+                    ?>
                 </div>
             </div>
         </div>

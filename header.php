@@ -1,4 +1,8 @@
     <!-- Header Area Start Here -->
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }?>
     <header class="main-header-area">
         <!-- Main Header Area Start -->
         <div class="main-header header-transparent header-sticky">
@@ -38,9 +42,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="logout.php">
-                                        <span class="menu-text">Logout</span>
-                                    </a>
+                                    <?php
+                                    
+                                    if(isset($_SESSION['username'])){
+                                        echo "<a href='logout.php'>
+                                        <span class='menu-text'>Logout</span>
+                                    </a>";
+                                    }
+
+                                    ?>
                                 </li>
                             </ul>
                         </nav>
@@ -49,60 +59,59 @@
                         <div class="header-right-area main-nav">
                             <ul class="nav">
                                 <li class="minicart-wrap">
-                                    <a href="#" class="minicart-btn toolbar-btn">
+                                    <a href="cart.php" class="minicart-btn toolbar-btn">
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="cart-item_count">3</span>
+                                        <?php
+                                        
+                                        include('dbCon.php');
+
+                                        if(isset($_SESSION['username'])){
+                                            $user_id = $_SESSION['username'];
+                                            // Fetch cart items for the user from the database
+                                        $hquery = "SELECT * FROM `cart` WHERE user_id = '".$user_id."'";
+                                        $hresult = mysqli_query($con, $hquery);
+
+                                        if(mysqli_num_rows($hresult)>0){echo "<span class='cart-item_count'>".mysqli_num_rows($hresult)."</span>";}
+                                        
+                                        }
+                                        
+                                        ?>
+                                        
                                     </a>
                                     <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.php<?php if(isset($username)){echo "?username='".$username."'";} ?>"><img src="assets/images/cart/1.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.php">Odio tortor consequat</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
+                                        
+                                    <?php
+                                    if(isset($_SESSION['username'])){
+                                    if ($hresult->num_rows > 0) {
+                                        // output data of each row
+                                        while($hrow = $hresult->fetch_assoc()){
+                                        $hquery2 = "SELECT * FROM `products` WHERE id = '".$hrow['product_id']."'";
+                                        $hresult2 = mysqli_query($con, $hquery2);
+
+                                        while($hrow2 = $hresult2->fetch_assoc()){
+                                            $hprice = $hrow2['price'];
+                                            $hname =$hrow2['product_name'];
+                                            $hqty =$hrow['quantity'];
+                                        }
+                                        echo "<div class='single-cart-item'>
+                                        <div class='cart-img'>
+                                            <a href='cart.php'><img src='".$hrow['img']."' alt=''></a>
+                                        </div>
+                                        <div class='cart-text'>
+                                            <h5 class='title'><a href='cart.php'>".$hname."</a></h5>
+                                            <div class='cart-text-btn'>
+                                                <div class='cart-qty'>
+                                                    <span>".$hqty."×</span>
+                                                    <span class='cart-price'>$".$hprice."</span>
                                                 </div>
+                                                <button type='button'><i class='ion-trash-b'></i></button>
                                             </div>
                                         </div>
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.php"><img src="assets/images/cart/2.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.php">Integer eget augue</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="single-cart-item">
-                                            <div class="cart-img">
-                                                <a href="cart.php"><img src="assets/images/cart/3.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart-text">
-                                                <h5 class="title"><a href="cart.php">Eleifend quam</a></h5>
-                                                <div class="cart-text-btn">
-                                                    <div class="cart-qty">
-                                                        <span>1×</span>
-                                                        <span class="cart-price">$98.00</span>
-                                                    </div>
-                                                    <button type="button"><i class="ion-trash-b"></i></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cart-price-total d-flex justify-content-between">
-                                            <h5>Total :</h5>
-                                            <h5>$166.00</h5>
-                                        </div>
+                                    </div>";}
+                                }
+                            }
+                                    ?>
+                                    
                                         <div class="cart-links d-flex justify-content-between">
                                             <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.php">View cart</a>
                                             <a class="btn flosun-button secondary-btn rounded-0" href="checkout.php">Checkout</a>

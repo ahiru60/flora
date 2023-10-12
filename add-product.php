@@ -1,5 +1,5 @@
 <?php
-include('authSession.php');
+include('admin_authSession.php');
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -47,7 +47,7 @@ include('authSession.php');
     <!-- Header Area Start Here -->
         <!-- Header Area Start Here -->
         <?php
-        include("header.php")
+        include("admin_header.php")
         ?>
     <!-- Header Area End Here -->
     <!-- Breadcrumb Area Start Here -->
@@ -56,10 +56,10 @@ include('authSession.php');
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="breadcrumb-content position-relative section-content">
-                        <h3 class="title-3">Contact Us</h3>
+                        <h3 class="title-3">Add Product</h3>
                         <ul>
-                            <li><a href="index.php">Home</a></li>
-                            <li>Contact Us</li>
+                            <li><a href="admin_products.php">Products</a></li>
+                            <li>Add Product</li>
                         </ul>
                     </div>
                 </div>

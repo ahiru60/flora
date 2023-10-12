@@ -42,10 +42,9 @@
  
 
     <!-- Header Area Start Here -->
-        <!-- Header Area Start Here -->
-        <?php
-        include("header.php")
-        ?>
+    <?php
+    include("header.php");
+    ?>
     <!-- Header Area End Here -->
     <!-- Breadcrumb Area Start Here -->
     <div class="breadcrumbs-area position-relative">
@@ -68,46 +67,68 @@
     <div class="contact-us-area mt-no-text">
         <div class="container custom-area">
             <div class="row">
+                <div class="col-lg-4 col-md-6 col-custom">
+                    <div class="contact-info-item">
+                        <div class="con-info-icon">
+                            <i class="lnr lnr-map-marker"></i>
+                        </div>
+                        <div class="con-info-txt">
+                            <h4>Our Location</h4>
+                            <p>(800) 123 456 789 / (800) 123 456 789 info@example.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-custom">
+                    <div class="contact-info-item">
+                        <div class="con-info-icon">
+                            <i class="lnr lnr-smartphone"></i>
+                        </div>
+                        <div class="con-info-txt">
+                            <h4>Contact us Anytime</h4>
+                            <p>Mobile: 012 345 678<br>Fax: 123 456 789</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-custom text-align-center">
+                    <div class="contact-info-item">
+                        <div class="con-info-icon">
+                            <i class="lnr lnr-envelope"></i>
+                        </div>
+                        <div class="con-info-txt">
+                            <h4>Support Overall</h4>
+                            <p>Support24/7@example.com <br> info@example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 col-custom">
-                    <form method="post" action="save-product.php" accept-charset="UTF-8" class="contact-form" enctype="multipart/form-data">
+                    <form method="post" action="http://whizthemes.com/mail-php/reza/flosun/mail.php" id="contact-form" accept-charset="UTF-8" class="contact-form">
                         <div class="comment-box mt-5">
-                            <h5 class="text-uppercase">Add Product</h5>
+                            <h5 class="text-uppercase">Get in Touch</h5>
                             <div class="row mt-3">
                                 <div class="col-md-6 col-custom">
                                     <div class="input-item mb-4">
-                                        <input class="border-0 rounded-0 w-100 input-area name gray-bg" type="text" name="product_name" id="product_name" placeholder="Product name" required>
+                                        <input class="border-0 rounded-0 w-100 input-area name gray-bg" type="text" name="con_name" id="con_name" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-custom">
                                     <div class="input-item mb-4">
-                                        <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="price" id="price" placeholder="Price" required>
+                                        <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="email" name="con_email" id="con_email" placeholder="Email">
                                     </div>
-                                    
-                                </div>
                                 </div>
                                 <div class="col-12 col-custom">
                                     <div class="input-item mb-4">
-                                        <textarea cols="30" rows="5" class="border-0 rounded-0 w-100 custom-textarea input-area gray-bg" name="description" id="description" required placeholder="Description"></textarea>
+                                        <input class="border-0 rounded-0 w-100 input-area email gray-bg" type="text" name="con_content" id="con_content" placeholder="Subject">
                                     </div>
-                                <div class="col-md-6 col-custom">
+                                </div>
+                                <div class="col-12 col-custom">
                                     <div class="input-item mb-4">
-                                        <label for="img">Product Image:</label>
-                                        <input type="file" name="img" id="img" required>
+                                        <textarea cols="30" rows="5" class="border-0 rounded-0 w-100 custom-textarea input-area gray-bg" name="con_message" id="con_message" placeholder="Message"></textarea>
                                     </div>
-                                <div class="col-md-6 col-custom">    
-                                    <div class="input-item mb-4">
-                                        <label for="is_sale">On Sale:</label>
-                                            <div>
-                                                <label for="is_sale">Yes:</label>
-                                                <input type="radio" value = "true"name="is_sale" id="is_sale">
-                                                <label for="is_sale">No:</label>
-                                                <input type="radio" value = "false" name="is_sale" id="is_sale" checked>
-                                            </div>
-                                    </div>
-                                </div> 
                                 </div>
                                 <div class="col-12 col-custom mt-40">
-                                    <button type="submit" id="submit" name="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Add Product</button>
+                                    <button type="submit" id="submit" name="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Send A Message</button>
                                 </div>
                                 <p class="col-8 col-custom form-message mb-0"></p>
                             </div>
@@ -116,13 +137,12 @@
                 </div>
             </div>
         </div>
-        
     </div>
     <!-- Contact Us Area End Here -->
     <!--Footer Area Start-->
     <?php
-   include("footer.php")
-   ?>
+    include("footer.php");
+    ?>
     <!--Footer Area End-->
 
     <!-- JS

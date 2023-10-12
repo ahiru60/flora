@@ -37,6 +37,11 @@
                                         <span class="menu-text">Contact Us</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="logout.php">
+                                        <span class="menu-text">Logout</span>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -151,14 +156,14 @@
                         <!-- mobile menu navigation start -->
                         <nav>
                             <ul class="mobile-menu">
-                                <li class="menu-item-has-children"><a href="#">Home</a>
+                                <li class="menu-item-has-children"><a href="index.php">Home</a>
                                     
                                 </li>
-                                <li class="menu-item-has-children"><a href="#">Shop</a>
+                                <li class="menu-item-has-children"><a href="shop.php">Shop</a>
                                 </li>
                                 
                                 <li><a href="about-us.php">About Us</a></li>
-                                <li><a href="contact-us.php">Contact</a></li>
+                                <li><a href="contact-us.php">Contact Us</a></li>
                             </ul>
                         </nav>
                         <!-- mobile menu navigation end -->

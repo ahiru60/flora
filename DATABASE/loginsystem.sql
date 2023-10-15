@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2023 at 12:39 PM
+-- Generation Time: Oct 15, 2023 at 03:07 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `loginsystem`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `img`) VALUES
+(17, 0, 4, 2, 'assets/images/product/2.jpg');
 
 -- --------------------------------------------------------
 
@@ -46,8 +67,7 @@ INSERT INTO `products` (`id`, `product_name`, `price`, `description`, `is_sale`,
 (5, 'Blossom bouquet flower', '90.00', '', '1', 'assets/images/product/3.jpg'),
 (6, 'Orchid flower red stick', '90.00', '', '0', 'assets/images/product/4.jpg'),
 (7, 'Rose bouquet white', '90.00', '', '0', 'assets/images/product/5.jpg'),
-(8, 'Hyacinth white stick', '90.00', '', '1', 'assets/images/product/6.jpg'),
-(13, 'adiii', '50', 'hiop[rg', '1', 'assets/images/product/20181224_183923.jpg');
+(8, 'Hyacinth white stick', '90.00', '', '1', 'assets/images/product/6.jpg');
 
 -- --------------------------------------------------------
 
@@ -71,14 +91,18 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_datetime`) 
 (19, 'admin', '25d55ad283aa400af464c76d713c07ad', 'bdhirunath@gmail.com', '2022-12-10 15:55:13'),
 (20, 'hahh', '83ecef6803617d5c9901982ad84716d2', 'sd@gmail.com', '2023-01-05 03:31:31'),
 (21, 'user1', '83ecef6803617d5c9901982ad84716d2', 'user1@gmail.com', '2023-01-05 04:14:39'),
-(22, 'new', 'ebb1c37720dc7987e78f76b9aa0ee398', 'new@gmail.com', '2023-01-05 04:20:41'),
 (24, 'Adithya Karunarathna', 'dd48d4f16705da4393516b31083f0f39', 'afdhirunath@gmail.com', '2023-10-03 12:58:29'),
-(25, 'John Smith', '25d55ad283aa400af464c76d713c07ad', 'sdf@gmail.com', '2023-10-03 14:06:52'),
-(27, 'John Smith', 'e807f1fcf82d132f9bb018ca6738a19f', 'abcd@gmail.co', '2023-10-03 18:37:54');
+(25, 'John Smith', '25d55ad283aa400af464c76d713c07ad', 'sdf@gmail.com', '2023-10-03 14:06:52');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -95,6 +119,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products`

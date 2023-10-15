@@ -1,15 +1,5 @@
-<div class='single-cart-item'>
-    <div class='cart-img'>
-        <a href='cart.php'><img src='assets/images/cart/3.jpg' alt=''></a>
+<form method='post' action='add-product.php' accept-charset='UTF-8' class='contact-form' enctype='multipart/form-data'>
+    <div class='col-12 col-custom mt-40'>
+        <button type='submit' id='submit' name='submit' class='btn flosun-button secondary-btn theme-color rounded-0'>Add Product</button>
     </div>
-    <div class='cart-text'>
-        <h5 class='title'><a href='cart.php'>Eleifend quam</a></h5>
-        <div class='cart-text-btn'>
-            <div class='cart-qty'>
-                <span>1×</span>
-                <span class='cart-price'>$98.00</span>
-            </div>
-            <button type='button'><i class='ion-trash-b'></i></button>
-        </div>
-    </div>
-</div>
+</form>

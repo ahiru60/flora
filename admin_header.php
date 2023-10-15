@@ -22,7 +22,7 @@
                                     
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="admin_users.php">
                                         <span class="menu-text">Users</span>
                                         
                                     </a>

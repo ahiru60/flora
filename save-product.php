@@ -1,4 +1,5 @@
 <?php
+include('admin_authSession.php');
 require('dbCon.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

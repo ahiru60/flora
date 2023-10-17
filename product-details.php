@@ -156,7 +156,7 @@ if($result->num_rows > 0) {
                                     <div class='inc qtybutton'>+</div>
                                 </div>
                             </div>
-                            <input type='hidden' name='user_id' value='".$_SESSION['username']."'>
+                            <input type='hidden' name='user_id' value='";if(isset($_SESSION['id'])){echo $_SESSION['id'];}else{echo "null";} echo "'>
                             <input type='hidden' name='product_id' value='".$row['id']."'>
                             <input type='hidden' name='image' value='".$row['img']."'>
                             <input class='btn product-cart button-icon flosun-button dark-btn' type='submit' value='Add to Cart' id='addToCart'>

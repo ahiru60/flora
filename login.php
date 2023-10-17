@@ -3,7 +3,7 @@
 <?php
 session_start();
 require('dbCon.php');
-
+if(!isset($_GET['error'])){$error=$_GET['error'];}
             // When form submitted, check and create user session.
             
             if (isset($_POST['username'])) {
@@ -16,27 +16,35 @@ require('dbCon.php');
                 $username = mysqli_real_escape_string($con, $username);
                 $password = stripslashes($_REQUEST['password']);
                 $password = mysqli_real_escape_string($con, $password);// Check user is exist in the database
-                $query = "SELECT * FROM `users` WHERE username='".$username."' OR password='" . md5($password) . "'";
+                $query = "SELECT * FROM `users` WHERE email='".$username."' AND password='" . md5($password) . "'";
                 $result = mysqli_query($con, $query) or die(mysqli_error($con));
                 $rows = mysqli_num_rows($result);
-                if ($rows >0) {
+                if ($rows ==1) {
                 //session_start();    
                 $_SESSION["username"] = $username;
+                while($row = $result->fetch_assoc()){
+                $_SESSION["id"] = $row['id'];}
                 // Redirect to user dashboard page
                 $_SESSION['loggedin'] = true;
-                header("Location: index.php");
+                
+                if(isset($_GET['redirect'])){
+                    header("Location: product-details.php?product_id=".$_GET['redirect']);
+                }
+                else{
+                    header("Location: index.php");
+                }
                 }
                 
             else {
-                echo "rows = ".$rows;
+                /*echo "rows = ".$rows;
                 echo "<div class='form'>
                 <h3>Incorrect Username/password.</h3><br/>
                 <p class='link txt1'>Click here to <a
                 href='login.php' class='txt2' >Login</a> again.</p>
-                </div>";
+                </div>";*/
+                
             }}
- } 
- else {
+ }
  ?>
  <!doctype html>
 <html class="no-js" lang="en">
@@ -110,8 +118,13 @@ require('dbCon.php');
                         <div class="section-content text-center mb-5">
                             <h2 class="title-4 mb-2">Login</h2>
                             <p class="desc-content">Please login using account detail bellow.</p>
+                            <?php
+                            if($error){
+                                echo "<p class='desc-content'>Please login using account detail bellow.</p>";
+                            }
+                            ?>
                         </div>
-                        <form action="#" method="post">
+                        <form action="login.php?error=true" method="post">
                             <div class="single-input-item mb-3">
                                 <input type="email" placeholder="Email or Username" name= "username">
                             </div>
@@ -181,8 +194,5 @@ require('dbCon.php');
 
 </body>
 
-<?php
- };
-?>
 <!-- Mirrored from htmldemo.net/flosun/flosun/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 04 Dec 2022 05:03:27 GMT -->
 </html>

@@ -66,7 +66,7 @@
                                         include('dbCon.php');
 
                                         if(isset($_SESSION['username'])){
-                                            $user_id = $_SESSION['username'];
+                                            $user_id = $_SESSION['id'];
                                             // Fetch cart items for the user from the database
                                         $hquery = "SELECT * FROM `cart` WHERE user_id = '".$user_id."'";
                                         $hresult = mysqli_query($con, $hquery);

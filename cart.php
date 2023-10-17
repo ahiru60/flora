@@ -2,7 +2,8 @@
 include('authSession.php');
 include('dbCon.php');
 
-$user_id = $_SESSION['username'];
+$user_id = $_SESSION['id'];
+
 
 // Fetch cart items for the user from the database
 $query = "SELECT * FROM `cart` WHERE user_id = '".$user_id."'";
@@ -94,6 +95,7 @@ $result = mysqli_query($con, $query);
                             </thead>
                             <tbody>
                                 <?php
+                                echo $user_id;
                                 if ($result->num_rows > 0) {
                                     // output data of each row
                                     $subTotal = 0;

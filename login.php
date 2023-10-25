@@ -3,7 +3,6 @@
 <?php
 session_start();
 require('dbCon.php');
-if(!isset($_GET['error'])){$error=$_GET['error'];}
             // When form submitted, check and create user session.
             
             if (isset($_POST['username'])) {
@@ -118,13 +117,9 @@ if(!isset($_GET['error'])){$error=$_GET['error'];}
                         <div class="section-content text-center mb-5">
                             <h2 class="title-4 mb-2">Login</h2>
                             <p class="desc-content">Please login using account detail bellow.</p>
-                            <?php
-                            if($error){
-                                echo "<p class='desc-content'>Please login using account detail bellow.</p>";
-                            }
-                            ?>
+                            
                         </div>
-                        <form action="login.php?error=true" method="post">
+                        <form action="login.php?redirect=<?php if(isset($_GET['redirect'])){echo $_GET['redirect'];}?>" method="post">
                             <div class="single-input-item mb-3">
                                 <input type="email" placeholder="Email or Username" name= "username">
                             </div>

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "UPDATE `cart` SET quantity = quantity + ".$quantity." WHERE user_id = '".$user_id."' AND product_id = '".$product_id."'";
         mysqli_query($con, $query);
         header("Location: product-details.php?product_id=".$product_id."");
-    } if(mysqli_num_rows($result) < 0 && isset($user_id)) {
+    } if(mysqli_num_rows($result) < 1 && isset($user_id)) {
         // Insert new item if product not in cart
         echo "Inserted new item if product not in cart";
         $query = "INSERT INTO `cart` (user_id, product_id, quantity, img) VALUES ('".$user_id."', '".$product_id."','". $quantity."','".$image."')";
@@ -29,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: product-details.php?product_id=".$product_id."");
     }
     
-    mysqli_query($con, $query);}
+    //mysqli_query($con, $query);
+}
     
 }
 else{

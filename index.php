@@ -55,8 +55,8 @@
                     <!-- Intro Content Start -->
                     <div class="intro11-content text-left">
                         <h3 class="title-slider text-uppercase">Top Trend</h3>
-                        <h2 class="title">2022 Flower Trend</h2>
-                        <p class="desc-content">Lorem ipsum dolor sit amet, pri autem nemore bonorum te. Autem fierent ullamcorper ius no, nec ea quodsi invenire. </p>
+                        <h2 class="title">2023 Flower Trend</h2>
+                        <p class="desc-content">2023's floral elegance blooms vibrantly. Dive into nature's hues, from pastels to bold. Let our collection inspire your floral journey. Embrace nature's wonder.</p>
                         <a href="product-details.php" class="btn flosun-button secondary-btn theme-color  rounded-0">Shop Now</a>
                     </div>
                     <!-- Intro Content End -->
@@ -66,7 +66,7 @@
                     <div class="intro11-content text-left">
                         <h3 class="title-slider black-slider-title text-uppercase">Collection</h3>
                         <h2 class="title">Flowers and Candle <br> Birthday Gift</h2>
-                        <p class="desc-content">Lorem ipsum dolor sit amet, pri autem nemore bonorum te. Autem fierent ullamcorper ius no, nec ea quodsi invenire. </p>
+                        <p class="desc-content">Flowers have a timeless way of conveying our deepest sentiments. For birthdays, anniversaries, or just because, our curated collection offers the perfect gift for every occasion. </p>
                         <a href="product-details.php" class="btn flosun-button secondary-btn rounded-0">Shop Now</a>
                     </div>
                     <!-- Intro Content End -->
@@ -883,8 +883,8 @@
             <div class="row">
                 <div class="col-lg-8 ms-auto me-auto">
                     <div class="history-area-content pb-0 mb-0 border-0 text-center">
-                        <p><strong>Captain America: Civil War Christopher Markus and Stephen McFeely see the Hulk as the game over moment.</strong></p>
-                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus. Phasellus eu rhoncus dolor, vitae scelerisque sapien</p>
+                        <p><strong>Founded in 1985, Blossom Boutique began as a small family-run flower shop nestled in the heart of the city.</strong></p>
+                        <p>With a passion for nature's beauty and a commitment to sourcing the freshest blooms, we quickly became a beloved local establishment. Over the years, our store blossomed, both in size and reputation, driven by our dedication to creating stunning floral arrangements and our genuine care for our community. Generations have trusted us to be a part of their most cherished moments, from birthdays to weddings, making Blossom Boutique more than just a store—it's a cherished local tradition.</p>
                     </div>
                 </div>
             </div>

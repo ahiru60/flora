@@ -9,7 +9,7 @@
                                     <img src="assets/images/logo/logo-footer.png" alt="Logo Image">
                                 </a>
                             </div>
-                            <p class="desc-content">Lorem Khaled Ipsum is a major key to success. To be successful you’ve got to work hard you’ve got to make it.</p>
+                            <p class="desc-content">Success requires hard work and determination. Push through, and make your mark.</p>
                             <div class="social-links">
                                 <ul class="d-flex">
                                     <li>

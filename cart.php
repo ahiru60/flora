@@ -6,7 +6,7 @@ $user_id = $_SESSION['id'];
 
 
 // Fetch cart items for the user from the database
-$query = "SELECT * FROM `cart` WHERE user_id = '".$user_id."'";
+$query = "SELECT * FROM `cart` JOIN `products`ON cart.product_id = products.id WHERE user_id = '".$user_id."'";
 $result = mysqli_query($con, $query);
 //$cart_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
@@ -95,23 +95,28 @@ $result = mysqli_query($con, $query);
                             </thead>
                             <tbody>
                                 <?php
-                                echo $user_id;
+                                //echo $user_id;
                                 if ($result->num_rows > 0) {
                                     // output data of each row
                                     $subTotal = 0;
                                     while($row = $result->fetch_assoc()){
-                                        $query2 = "SELECT * FROM `products` WHERE id = '".$row['product_id']."'";
-                                        $result2 = mysqli_query($con, $query2);
-
-                                        while($row2 = $result2->fetch_assoc()){
-                                            $price = $row2['price'];
-                                        }
+                                        
+                                            $price = $row['price'];
+                                            if($row['is_sale']){
+                                                $price =intval(str_replace('$','',$price))-((intval(str_replace('$','',$price))/100)*20);
+                                            }
+                                            else{
+                                                $price =intval(str_replace('$','',$price));
+                                            }
+                                            
+                                            $product_name = $row['product_name'];
+                                        
                                         $subTotal = $subTotal+($price*$row['quantity']);
                                         echo"
                                         <tr>
                                     <td class='pro-thumbnail'><a href='#'><img class='img-fluid' src='".$row['img']."' alt='Product' /></a></td>
-                                    <td class='pro-title'><a href='#'>Pearly Everlasting <br> s / green</a></td>
-                                    <td class='pro-price'><span>"."$".strval(number_format(intval(str_replace('$','',$price))-((intval(str_replace('$','',$price))/100)*20),2))."</span></td>
+                                    <td class='pro-title'><a href='#'>".$product_name."</a></td>
+                                    <td class='pro-price'><span>"."$".number_format($price,2)."</span></td>
                                     <td class='pro-quantity'>
                                         <div class='quantity'>
                                             ".$row['quantity']."

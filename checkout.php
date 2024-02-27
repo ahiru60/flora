@@ -1,3 +1,15 @@
+<?php
+include('authSession.php');
+include('dbCon.php');
+
+$user_id = $_SESSION['id'];
+
+
+// Fetch cart items for the user from the database
+$query = "SELECT * FROM `cart` JOIN `products`ON cart.product_id = products.id WHERE user_id = '".$user_id."'";
+$result = mysqli_query($con, $query);
+//$cart_items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -64,45 +76,6 @@
     <!-- Checkout Area Start Here -->
     <div class="checkout-area mt-no-text">
         <div class="container custom-container">
-            <div class="row">
-                <div class="col-12 col-custom">
-                    <div class="coupon-accordion">
-                        <h3>Returning customer? <span id="showlogin">Click here to login</span></h3>
-                        <div id="checkout-login" class="coupon-content">
-                            <div class="coupon-info">
-                                <p class="coupon-text">Quisque gravida turpis sit amet nulla posuere lacinia. Cras sed est
-                                    sit amet ipsum luctus.</p>
-                                <form action="#">
-                                    <p class="form-row-first">
-                                        <label>Username or email <span class="required">*</span></label>
-                                        <input type="text">
-                                    </p>
-                                    <p class="form-row-last">
-                                        <label>Password <span class="required">*</span></label>
-                                        <input type="password">
-                                    </p>
-                                    <p class="form-row">
-                                        <input type="checkbox" id="remember_me">
-                                        <label for="remember_me">Remember me</label>
-                                    </p>
-                                    <p class="lost-password"><a href="#">Lost your password?</a></p>
-                                </form>
-                            </div>
-                        </div>
-                        <h3>Have a coupon? <span id="showcoupon">Click here to enter your code</span></h3>
-                        <div id="checkout_coupon" class="coupon-checkout-content">
-                            <div class="coupon-info">
-                                <form action="#">
-                                    <p class="checkout-coupon">
-                                        <input placeholder="Coupon code" type="text">
-                                        <input class="coupon-inner_btn" value="Apply Coupon" type="submit">
-                                    </p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-lg-6 col-12 col-custom">
                     <form action="#">
@@ -296,25 +269,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="cart_item">
-                                        <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity">
-                            × 1</strong></td>
-                                        <td class="cart-product-total text-center"><span class="amount">£165.00</span></td>
-                                    </tr>
-                                    <tr class="cart_item">
-                                        <td class="cart-product-name"> Vestibulum suscipit<strong class="product-quantity">
-                            × 1</strong></td>
-                                        <td class="cart-product-total text-center"><span class="amount">£165.00</span></td>
-                                    </tr>
+                                <?php
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                $subTotal = 0;
+                                while($row = $result->fetch_assoc()){
+                                    $price = $row['price'];
+                                            if($row['is_sale']){
+                                                $price =intval(str_replace('$','',$price))-((intval(str_replace('$','',$price))/100)*20);
+                                            }
+                                            else{
+                                                $price =intval(str_replace('$','',$price));
+                                            }
+                                            
+                                            $product_name = $row['product_name'];
+                                        
+                                        $subTotal = $subTotal+($price*$row['quantity']);
+                                    echo"<tr class='cart_item'>
+                                    <td class='cart-product-name'>".$product_name."<strong class='product-quantity'>
+                        ×".$row['quantity']."</strong></td>
+                                    <td class='cart-product-total text-center'><span class='amount'> $".number_format($price,2)."</span></td>
+                                </tr>
+
+                                    ";
+
+                                }}?>
                                 </tbody>
                                 <tfoot>
                                     <tr class="cart-subtotal">
                                         <th>Cart Subtotal</th>
-                                        <td class="text-center"><span class="amount">£215.00</span></td>
+                                        <td class="text-center"><span class="amount"><?php echo "$".number_format($subTotal,2); ?></span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>Order Total</th>
-                                        <td class="text-center"><strong><span class="amount">£215.00</span></strong></td>
+                                        <td class="text-center"><strong><span class="amount"><?php echo "$".number_format($subTotal,2); ?></span></strong></td>
                                     </tr>
                                 </tfoot>
                             </table>
